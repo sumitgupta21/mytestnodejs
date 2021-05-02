@@ -1,0 +1,22 @@
+AWSTemplateFormatVersion : '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: A sample SAM template for deploying Lambda functions.
+
+Resources:
+  myTestNodeJs:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: handler.handler
+      Runtime: nodejs10.x
+      Events:
+        Http1:
+          Type: Api
+          Properties:
+            Path: /
+            Method: get
+        Http2:
+          Type: Api
+          Properties:
+            Path: /{Proxy+}
+            Method: any
+
